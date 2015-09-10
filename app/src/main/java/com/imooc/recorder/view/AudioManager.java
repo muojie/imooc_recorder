@@ -102,10 +102,10 @@ public class AudioManager {
 
     public void release()
     {
-
         mMediaRecorder.stop();
         mMediaRecorder.release();
         mMediaRecorder = null;
+        isPrepared = false;
     }
 
     public void cancel()

@@ -105,6 +105,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
                     mDialogManager.updateVoiceLevel(mAudioManager.getVoiceLevel(7));
                     break;
                 case MSG_DIALOG_DIMISS:
+                    mDialogManager.dimissDialog();
                     break;
             }
         }
