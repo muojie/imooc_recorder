@@ -1,0 +1,41 @@
+AudioRecorderButton
+	State: STATE_NORMAL, STATE_RECORDING, STATE_WANT_TO_CANCEL
+
+DialogManager
+	Style: RECORDING, WANT_TO_CANCEL, TOO_SHORT
+
+AudioManager
+	prepare(); -> end prepare -> callback
+	cancel();
+	release(); ->callbackToActivity
+	getVoiceLevel()
+
+class AudioRecorderButton
+{
+	onTouchEvent()
+	{
+		DOWN:
+			changeButtonState(STATE_RECORD)
+			Longclick->AudioManager.prepare()
+				->end prepared ->DialogManager.showDialog(RECORDING)
+		MOVE:
+			if(wantCacel(x,y))
+			{
+				DialogManager.showDialog()
+				changeButtonState(STATE_WANT_TO_CANCEL)
+			} else {
+				DialogMaanger.showDialog(RECORDING)
+				changeButtonState(STATE_RECORDING)
+			}
+
+		UP:
+			if(wantCancel == curState)
+			{
+				AudioManager.cancel();
+			}
+			if(STATE_RECORDING == curState)
+			{
+				AudioManager.release();
+				callbackToActivity(url, time);
+			}
+	}
