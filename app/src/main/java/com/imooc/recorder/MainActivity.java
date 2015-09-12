@@ -35,24 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
         mListView = (ListView)findViewById(R.id.id_listview);
         mAudioRecorderButton = (AudioRecorderButton)findViewById(R.id.id_recorder_button);
+
         mAudioRecorderButton.setAudioFinishRecorderListener(new AudioRecorderButton.AudioFinishRecorderListener() {
             @Override
             public void onFinish(float seconds, String filePath) {
-                Log.e("Fatal", "111111111111111111111111111111");
                 Recorder recorder = new Recorder(seconds, filePath);
-                Log.e("Fatal", "2222");
                 mDatas.add(recorder);
-                Log.e("Fatal", "3333");
                 mAdapter.notifyDataSetChanged();
-                Log.e("Fatal", "44444");
                 mListView.setSelection(mDatas.size() - 1);
-                Log.e("Fatal", "6555555555");
             }
         });
 
         mAdapter = new RecorderAdapter(this, mDatas);
         mListView.setAdapter(mAdapter);
-/*
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -75,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        */
     }
 
     @Override

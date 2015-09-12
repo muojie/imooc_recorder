@@ -48,7 +48,7 @@ public class RecorderAdapter extends ArrayAdapter<Recorder> {
         {
             convertView = mInflater.inflate(R.layout.item_recorder, parent, false);
             holder = new ViewHolder();
-            //holder.seconds = (TextView)convertView.findViewById(R.id.id_recorder_time);
+            holder.seconds = (TextView)convertView.findViewById(R.id.id_recorder_time);
             holder.length = convertView.findViewById(R.id.id_recorder_length);
 
             convertView.setTag(holder);
@@ -57,11 +57,11 @@ public class RecorderAdapter extends ArrayAdapter<Recorder> {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        //holder.seconds.setText(Math.round(getItemId(position)) + "\"");
+        holder.seconds.setText(Math.round(getItem(position).time) + "\"");
         ViewGroup.LayoutParams lp = holder.length.getLayoutParams();
         lp.width = (int)(mMinItemWidth + (mMaxItemWidth/60f * getItem(position).time));
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 
     private class ViewHolder
