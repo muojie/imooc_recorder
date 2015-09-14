@@ -51,7 +51,7 @@ public class RecorderAdapter extends ArrayAdapter<Recorder> {
             holder.seconds = (TextView)convertView.findViewById(R.id.id_recorder_time);
             holder.length = convertView.findViewById(R.id.id_recorder_length);
 
-            convertView.setTag(holder);
+                convertView.setTag(holder);
         } else
         {
             holder = (ViewHolder)convertView.getTag();
