@@ -1,7 +1,9 @@
 package com.imooc.recorder;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
@@ -11,6 +13,7 @@ import android.media.MediaRecorder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -137,6 +140,41 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Test", "test: current volume is " + currVolume);
             }
         }
+    }
+
+    //监听音量按键
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                //Toast.makeText(MainActivity.this, "Volume down", Toast.LENGTH_SHORT);
+                new AlertDialog.Builder(this)
+                        .setTitle("Alerting Message")
+                        .setMessage("Volume down")
+                        .setNegativeButton("Close", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                Log.e("Test", "Volume down");
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                //Toast.makeText(MainActivity.this, "Volume up", Toast.LENGTH_SHORT);
+                new AlertDialog.Builder(this)
+                        .setTitle("Alerting Message")
+                        .setMessage("Volume up")
+                        .setNegativeButton("Close", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                Log.e("Test", "Volume up");
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
